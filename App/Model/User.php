@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Controller;
+Use core\Model;
 
-class User extends Model
+class User
 {
+    use Model;
+
     protected $table = 'users';
+    protected $id = 'user_id';
 
     protected $fillable =
     [
@@ -18,6 +21,4 @@ class User extends Model
         'password',
         'remember_token',
     ];
-
-    
 };

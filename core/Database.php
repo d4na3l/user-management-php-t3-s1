@@ -1,6 +1,7 @@
 <?php
 
-// trait Database, encargada de conectar con la base de datos.
+namespace core;
+
 trait Database
 {
     private $config;
@@ -8,24 +9,24 @@ trait Database
     // Constructor para cargar la configuración de la base de datos.
     public function __construct()
     {
-        $this->config = require __DIR__ . '/../config/database.php';
+        $this->config = require '../config/database.php';
     }
 
     // Metodo para conectar con la base de datos y comprobar que este funcionando.
     private function connect()
     {
-        $dsn = 'pgsql:host=' . $this->config['host'] . ';port=' . $this->config['port'] . ';dbname=' . $this->config['dbname'];
+        $string = 'pgsql:host=' . $this->config['host'] . ';port=' . $this->config['port'] . ';dbname=' . $this->config['dbname'];
 
         try {
-            $con = new PDO($dsn, $this->config['username'], $this->config['password']);
-            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $con = new \PDO($string, $this->config['username'], $this->config['password']);
+            $con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             return $con;
         } catch (Exception $e) {
-            echo 'Failure to connect to db: ' . $e->getMessage();
+            die('Failure to connect to db: ' . $e->getMessage());
         }
     }
 
-    // Estructurar el query, hacer la peticion a la base de datos y regresar los resultados.
+    // Metodo para Conectar con la base de datos destructurar el query, hacer la peticion a la base de datos y regresar los resultados en base al query.
     public function query($query, $data = [])
     {
         $con = $this->connect();
@@ -33,7 +34,7 @@ trait Database
 
         $check = $stm->execute($data);
         if ($check) {
-            $result = $stm->fetchAll(PDO::FETCH_OBJ);
+            $result = $stm->fetchAll(\PDO::FETCH_OBJ);
             if (is_array($result) && count($result)) {
                 return $result;
             }
@@ -41,5 +42,4 @@ trait Database
 
         return false;
     }
-
 }
