@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: large;
+}
+
+body{
+    background-color: darkred;
+    padding: 32vh 32vw;
+}
+
+.login{
+    background-color: gray;
+    padding: 2vh 2vw;
+    border-style: none;
+    border-radius: 24px;
+}
+
+.input{
+    display: grid;
+}
+
+.input input{
+    margin: 1vh 0;
+    height: 8vh;
+    width: 31vw;
+    border-style: none;
+    border-radius: 24px;
+    padding-left: 12px;
+}
+
+button{
+    border-style: none;
+    border-radius: 24px;
+    background-color: green;
+    padding: 2vh 2vw;
+    color: white;
+}
+
+button:hover{
+    background-color: darkgreen;
+}
