@@ -1,6 +1,6 @@
 # Proyecto de Aplicación Web
 
-Cplicación web desarrollada utilizando PHP. A continuación, se proporciona información detallada sobre cómo configurar y levantar el proyecto, así como la versión de las herramientas utilizadas y cómo crear la base de datos.
+Aplicación web desarrollada utilizando PHP. A continuación, se proporciona información detallada sobre cómo configurar y levantar el proyecto, así como la versión de las herramientas utilizadas y cómo crear la base de datos.
 
 ## Versiones
 
@@ -16,9 +16,10 @@ Antes de comenzar, asegúrate de tener instalados los siguientes programas:
 
 # IMPORTANTE
 
-- Diríjase al directorio seeders\data.sql
-- Lea los comentarios
-- Cambia los datos de .env.example y renómbralo como .env
-- Asegúrese de cambiar los datos de la BD para que coincidan con los del archivo .env
+- Diríjase al directorio seeders\data.sql.
+- Lea los comentarios.
+- Cambia los datos de .env.example y renómbralo como .env.
+- Asegúrese de cambiar los datos del .env para que coincidan con los de la BD creada.
+- Si no usa XAMMP o alguna herramienta para levantar servidores Apache en Windows y usa Linux puede levantar el servidor usando el comando: php -S localhost:8000 -t public
 
 **Agradecida: La Gerencia. :D**
