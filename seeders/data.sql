@@ -1,7 +1,4 @@
--- Este es el script para crear la bd, el propietario de la bd y la tabla users en cuestion,
--- recuerden cambiar estos datos para que coincidan con los del .env
--- Cambien los datos de .envexample y renombrenlo como .env
--- Agradecida: La Gerencia.
+-- Cambia los valores de nombre de la BD, el usuario y la contraseña según sea necesario
 
 CREATE USER usuario WITH PASSWORD 'contraseña';
 CREATE DATABASE nombre_de_la_db WITH OWNER usuario;
