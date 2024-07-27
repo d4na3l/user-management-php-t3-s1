@@ -2,7 +2,6 @@
 
 require_once 'env.php'; // Incluye el archivo de variables de entorno
 loadEnv('../.env'); // Carga las variables de entorno
-show(env('ENV_HOST'));
 
 return
 [

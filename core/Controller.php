@@ -1,8 +1,6 @@
 <?php
 
-namespace core;
-
-abstract class AppController
+class Controller
 {
 
 }

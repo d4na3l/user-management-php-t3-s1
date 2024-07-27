@@ -1,16 +1,23 @@
 <?php
-// Ejecuta por orden cada uno de los archivos dentro de Core, para que funcionen
-
+// Registro de autoload para cargar clases automáticamente
 spl_autoload_register(function ($classname) {
-    // Convierte el namespace en una ruta de archivo
-    $filename = '../App/Model/' . str_replace('\\', '/', $classname) . '.php';
-  if (file_exists($filename)) {
+    $filename = '../' . str_replace('\\', '/', $classname) . '.php';
+    if (file_exists($filename)) {
         require $filename;
     }
 });
 
+// Incluir archivos necesarios
 require 'functions.php';
-require 'Database.php';
-require 'Model.php';
-// require 'Controller.php';
-// require 'App.php';
+require_once 'Database.php';
+require_once 'Model.php';
+require_once 'Controller.php';
+require_once 'App.php';
+
+// Iniciar la sesión si no está ya iniciada
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Carga de clases adicionales
+require 'Route.php';
