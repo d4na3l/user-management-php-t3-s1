@@ -1,4 +1,5 @@
 <div class="container">
+    <h2>Restablecer Contraseña</h2>
     <form id="resetPasswordForm" action="/reset-password" method="POST">
         <input type="hidden" name="_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
         <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
@@ -8,7 +9,7 @@
         <input type="password" name="confirm_password" required>
         <button type="submit">Restablecer Contraseña</button>
         <?php if (isset($data['error'])): ?>
-            <p><?php echo htmlspecialchars($data['error']); ?></p>
+            <p class="error-message"><?php echo htmlspecialchars($data['error']); ?></p>
         <?php endif; ?>
     </form>
 </div>

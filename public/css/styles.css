@@ -65,6 +65,23 @@ button:hover {
     background: #4cae4c;
 }
 
+/* Links */
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.links a {
+    color: #5cb85c;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
 /* Error message */
 .error-message {
     color: red;
