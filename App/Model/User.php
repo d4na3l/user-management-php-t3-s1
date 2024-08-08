@@ -27,12 +27,23 @@ class User
         return $this->insert([
             'name' => $this->name,
             'email' => $this->email,
-            'password' => $this->password,
+            'password' => password_hash($this->password, PASSWORD_DEFAULT), // Asegúrate de hashear la contraseña
         ]);
     }
 
     public function findByEmail($email)
     {
         return $this->first(['email' => $email]);
+    }
+
+    public function findById($id)
+    {
+        return $this->first(['id' => $id]);
+    }
+
+    public function allExceptLoggedIn($loggedInUserId)
+    {
+        $result = $this->where([], ['id' => $loggedInUserId]);
+        return $result ?: [];
     }
 }

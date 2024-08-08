@@ -1,2 +1,12 @@
-<h1>Bienvenido a la página de inicio</h1>
-<p>Contenido de la página de inicio.</p>
+<div class="container">
+    <h2><?= htmlspecialchars($title) ?></h2>
+    <ul>
+        <?php foreach ($users as $user): ?>
+            <li>
+                <a href="/profile?email=<?= htmlspecialchars($user['email']) ?>">
+                    <?= htmlspecialchars($user['name']) ?> (<?= htmlspecialchars($user['email']) ?>)
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

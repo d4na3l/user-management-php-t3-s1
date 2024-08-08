@@ -13,30 +13,31 @@ class ViewController
 
     public function render($view, $data = [])
     {
-        // Redirigir a /home si el usuario está autenticado y accede a una vista solo para invitados
+        $viewFile = $this->getViewFile($view);
+
+        if (!$viewFile || $view === '404') {
+            $viewFile = $this->getViewFile('layouts/404');
+            $data['view'] = $viewFile;
+            require $viewFile;
+            return;
+        }
+
         if ($this->isAuthenticated() && in_array($view, $this->guestViews)) {
             $this->redirectToHome();
         }
 
-        // Determinar si la vista solicitada es accesible para invitados
         if (!$this->isAuthenticated() && !in_array($view, $this->guestViews)) {
             $this->redirectToLogin();
         }
 
-        // Determinar el layout adecuado
         $layout = $this->getLayout();
 
-        // Verificar si la vista existe y preparar el archivo de vista
-        $viewFile = $this->getViewFile($view);
-
-        // Preparar los datos para el layout
         $data['view'] = $viewFile;
         $data['csrf_token'] = $_SESSION['csrf_token'] ?? '';
-        if ($this->isAuthenticated()) {
+        if ($this->isAuthenticated() && !isset($data['profileUser'])) {
             $data['user'] = $_SESSION['user'];
         }
 
-        // Renderizar el layout con la vista y los datos
         require $this->getLayoutFile($layout);
     }
 
@@ -49,9 +50,8 @@ class ViewController
     {
         $viewFile = "../resources/views/{$view}.view.php";
 
-        // Si la vista no existe, usar 404
         if (!file_exists($viewFile)) {
-            return "../resources/views/layouts/404.view.php";
+            return null;
         }
 
         return $viewFile;
@@ -70,7 +70,7 @@ class ViewController
     protected function onlyPermission($view)
     {
         $protectedViews = [
-            'home', 'profile', 'dashboard', // Agrega aquí las vistas protegidas
+            '/', 'home', 'profile',
         ];
 
         return in_array($view, $protectedViews);

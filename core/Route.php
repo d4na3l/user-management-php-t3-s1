@@ -21,9 +21,9 @@ class Route
         if (isset($this->routes[$this->requestMethod][$this->requestUri])) {
             // Encuentra el controlador y método para la URL
             list($this->controller, $this->method) = explode('@', $this->routes[$this->requestMethod][$this->requestUri]);
-        } elseif (isset($this->routes[$this->requestMethod]['/'])) {
-            // Utiliza la ruta raíz (/) como predeterminada
-            list($this->controller, $this->method) = explode('@', $this->routes[$this->requestMethod]['/']);
+        } else {
+            $this->controller = null;
+            $this->method = null;
         }
     }
 

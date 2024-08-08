@@ -14,30 +14,42 @@ class App
     {
         $controllerAction = $this->route->getControllerAction();
 
-        if ($controllerAction) {
+        if ($controllerAction)
+        {
             list($controller, $method) = explode('@', $controllerAction);
 
             $controller = "App\\Controller\\{$controller}";
 
-            if (class_exists($controller)) {
+            if (class_exists($controller))
+            {
                 $controllerInstance = new $controller();
-                if (method_exists($controllerInstance, $method)) {
+
+                if (method_exists($controllerInstance, $method))
+                {
                     call_user_func_array([$controllerInstance, $method], []);
-                } else {
+                }
+                else
+                {
                     $this->handleNotFound("Método '{$method}' no encontrado en el controlador '{$controller}'.");
                 }
-            } else {
+            }
+            else
+            {
                 $this->handleNotFound("Controlador '{$controller}' no encontrado.");
             }
-        } else {
+        }
+        else
+        {
             $this->handleNotFound("Ruta no encontrada para {$this->route->requestMethod} {$this->route->requestUri}.");
         }
     }
 
-    protected function handleNotFound($message = 'Not Found')
+    protected function handleNotFound($message)
     {
         http_response_code(404);
-        require '../resources/views/layouts/404.view.php';
-        show("<h1>404 - {$message}");
+        $controller = "App\\Controller\\_404Controller";
+        $controllerInstance = new $controller();
+        $controllerInstance->show($message);
+        exit();
     }
 }

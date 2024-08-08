@@ -2,20 +2,23 @@
 
 return [
     'GET' => [
-        '/' => 'HomeController@index', // Ruta pública o protegida basada en lógica interna
+        '/' => 'HomeController@index',
+        '/home' => 'HomeController@index',
         '/login' => 'AuthController@showLoginForm',
         '/register' => 'AuthController@showRegisterForm',
         '/forgot-password' => 'AuthController@showForgotPasswordForm',
-        '/reset-password' => 'AuthController@showResetPasswordForm', // Vista de formulario de restablecimiento
-        '/dashboard' => 'DashboardController@index', // Ruta protegida
-        // Otras rutas GET
+        '/reset-password' => 'AuthController@showResetPasswordForm',
+        '/profile' => 'ProfileController@show',
     ],
     'POST' => [
         '/login' => 'AuthController@login',
         '/register' => 'AuthController@register',
-        '/logout' => 'AuthController@logout', // Ruta protegida
-        '/forgot-password' => 'AuthController@sendResetLink', // Envía el enlace de restablecimiento
-        '/reset-password' => 'AuthController@resetPassword', // Procesa el restablecimiento de contraseña
-        // Otras rutas POST
+        '/logout' => 'AuthController@logout',
+        '/forgot-password' => 'AuthController@sendResetLink',
+        '/reset-password' => 'AuthController@resetPassword',
+        '/profile/updateName' => 'ProfileController@updateName',
+        '/profile/updateEmail' => 'ProfileController@updateEmail',
+        '/profile/updatePassword' => 'ProfileController@updatePassword',
+        '/profile/delete' => 'ProfileController@delete',
     ],
 ];
